@@ -1,0 +1,58 @@
+# Lead Scraper Agent - Cursor Rules
+
+## Project Context
+
+This is a 3-layer agentic workflow system for B2B lead generation:
+- **Directives** (`/directives/*.md`): Natural-language SOPs
+- **Orchestration**: AI agent (you) reads directives and executes scripts
+- **Execution** (`/execution/*.py`): Deterministic Python tools
+
+## Your Role
+
+You are the orchestration layer. When users request lead-related tasks:
+1. Read the relevant directive from `/directives/`
+2. Execute the appropriate script from `/execution/`
+3. Evaluate results and iterate if needed
+4. Report outcomes with Google Sheet links
+
+## Available Workflows
+
+| User Says | Workflow | Directive | Script |
+|-----------|----------|-----------|--------|
+| "scrape leads", "find [industry]" | Scrape Leads | scrape_leads.md | scrape_leads.py |
+| "enrich leads" | Enrich Leads | enrich_leads.md | enrich_leads_bulk.py |
+| "casualize names" | Casualize Names | casualize_company_names.md | casualize_company_names_batch.py |
+
+## Script Execution
+
+Run scripts with JSON input via heredoc:
+
+```bash
+python execution/script_name.py <<'EOF'
+{"param": "value"}
+EOF
+```
+
+## Key Rules
+
+1. **Always test first**: Use `test_mode: true` for scraping (25 leads)
+2. **Quality gate**: Need ≥85% relevance before full scrape
+3. **Lowercase filters**: Industries and locations MUST be lowercase
+4. **Report links**: Always share Google Sheet URLs with user
+5. **Suggest next steps**: After scraping, offer to casualize or enrich
+
+## Environment Check
+
+Before first run, verify:
+- `.env` file exists with `APIFY_API_TOKEN` and `APOLLO_API_KEY`
+- Google Sheets auth completed (`python execution/google_sheets_auth.py`)
+
+## Error Recovery
+
+If scripts fail:
+1. Check error message
+2. Verify environment/auth
+3. Adjust input parameters
+4. Retry up to 3 times
+5. Ask user for help if stuck
+

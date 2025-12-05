@@ -1,0 +1,14 @@
+# Copy this file to .env and fill in your API keys
+# cp env-template.txt .env
+
+# Apify Configuration
+APIFY_API_TOKEN=your_apify_api_token_here
+
+# Apollo.io Configuration
+APOLLO_API_KEY=your_apollo_api_key_here
+
+# Google Sheets OAuth
+# Run `python execution/google_sheets_auth.py` to generate token
+# Token will be stored at ~/.gemini/google_sheets_token.pickle
+GOOGLE_CREDENTIALS_PATH=~/.gemini/credentials.json
+

@@ -1,0 +1,19 @@
+# Lead Scraper Agent Dependencies
+# Core
+python-dotenv==1.0.0
+
+# Apify Integration
+apify-client==1.6.4
+
+# Google Sheets Integration
+gspread==6.0.0
+google-auth==2.25.2
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+
+# Apollo.io API
+requests==2.31.0
+
+# Data Processing
+pandas==2.1.4
+
