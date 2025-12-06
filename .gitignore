@@ -8,6 +8,7 @@ __pycache__/
 *.pickle
 credentials.json
 token.json
+google.json
 
 # Temporary files
 tmp/
